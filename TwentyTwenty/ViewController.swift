@@ -70,7 +70,7 @@ class ViewController: UIViewController {
         notification.fireDate = NSDate.init(timeIntervalSinceNow: Double(2))
         notification.timeZone = NSTimeZone.systemTimeZone()
         notification.repeatInterval = NSCalendarUnit.Hour
-        notification.soundName = "alarm.wav"
+        notification.soundName = "alarm.caf"
         
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
@@ -79,10 +79,10 @@ class ViewController: UIViewController {
             let notificationR = UILocalNotification()
             notificationR.alertBody = "It's time to look 20m far from you for 20s !!"
             notificationR.soundName = UILocalNotificationDefaultSoundName
-            notificationR.fireDate = NSDate.init(timeIntervalSinceNow: Double(i * 20 * 60))
+            notificationR.fireDate = NSDate.init(timeIntervalSinceNow: Double(i * 2 * 60))
             notificationR.timeZone = NSTimeZone.systemTimeZone()
             notificationR.repeatInterval = NSCalendarUnit.Hour
-            notificationR.soundName = "alarm.wav"
+            notificationR.soundName = "alarm.caf"
             
             UIApplication.sharedApplication().applicationIconBadgeNumber = 0
             UIApplication.sharedApplication().scheduleLocalNotification(notificationR)
