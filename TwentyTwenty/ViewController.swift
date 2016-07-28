@@ -108,7 +108,7 @@ class ViewController: UIViewController {
     @IBAction func count20sec(sender: UISwitch) {
         
         if (sender.on) {
-            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(updateElapsedTimeLabel), userInfo: nil, repeats: true)
+            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector:("updateElapsedTimeLabel:"), userInfo: nil, repeats: true)
             stopwatch.start()
         } else {
             elapsedTimeLabel.text = "00.0"
