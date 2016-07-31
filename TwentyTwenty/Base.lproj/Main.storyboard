@@ -83,6 +83,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="countSwitch" destination="exG-i6-jJB" id="udY-h6-sv7"/>
                         <outlet property="elapsedTimeLabel" destination="Vfs-UE-P4O" id="FSm-tb-XiN"/>
                         <outlet property="notificationSwicth" destination="a00-bf-qk1" id="yV3-eE-OQA"/>
                     </connections>

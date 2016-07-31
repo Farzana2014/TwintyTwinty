@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D70323FD1D35113000BF0B8F /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70323FC1D35113000BF0B8F /* Stopwatch.swift */; };
 		D791DF061D3B603400CADA7A /* alarm.caf in Resources */ = {isa = PBXBuildFile; fileRef = D791DF051D3B603400CADA7A /* alarm.caf */; };
+		D7B08E851D4E02B200707780 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B08E841D4E02B200707780 /* Sound.swift */; };
 		D7E71AA91D321AD80097A380 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E71AA81D321AD80097A380 /* AppDelegate.swift */; };
 		D7E71AAB1D321AD80097A380 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E71AAA1D321AD80097A380 /* ViewController.swift */; };
 		D7E71AAE1D321AD80097A380 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E71AAC1D321AD80097A380 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		D70323FC1D35113000BF0B8F /* Stopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		D791DF051D3B603400CADA7A /* alarm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = alarm.caf; path = TwentyTwenty/alarm.caf; sourceTree = "<group>"; };
+		D7B08E841D4E02B200707780 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		D7E71AA31D321AD80097A380 /* TwentyTwenty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwentyTwenty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E71AA71D321AD80097A380 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7E71AA81D321AD80097A380 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				D7E71AA81D321AD80097A380 /* AppDelegate.swift */,
 				D7E71AAA1D321AD80097A380 /* ViewController.swift */,
 				D70323FC1D35113000BF0B8F /* Stopwatch.swift */,
+				D7B08E841D4E02B200707780 /* Sound.swift */,
 				D7E71AAC1D321AD80097A380 /* Main.storyboard */,
 				D7E71AAF1D321AD80097A380 /* Images.xcassets */,
 				D7E71AB11D321AD80097A380 /* LaunchScreen.xib */,
@@ -224,6 +227,7 @@
 				D7E71AAB1D321AD80097A380 /* ViewController.swift in Sources */,
 				D70323FD1D35113000BF0B8F /* Stopwatch.swift in Sources */,
 				D7E71AA91D321AD80097A380 /* AppDelegate.swift in Sources */,
+				D7B08E851D4E02B200707780 /* Sound.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

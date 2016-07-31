@@ -12,8 +12,10 @@ class ViewController: UIViewController {
     
     @IBOutlet var elapsedTimeLabel: UILabel!
     @IBOutlet var notificationSwicth: UISwitch!
+    @IBOutlet var countSwitch: UISwitch!
     
     let stopwatch = Stopwatch()
+    let testSound = Sound(name: "alarm", type: "caf")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +96,9 @@ class ViewController: UIViewController {
     
     func updateElapsedTimeLabel(timer: NSTimer) {
         
-        if stopwatch.elapsedTime >= 20.0 {
+        if stopwatch.elapsedTime >= 20.1 {
+            testSound.play()
+            countSwitch.on = false
             stopwatch.stop()
         }
         
@@ -113,6 +117,7 @@ class ViewController: UIViewController {
         } else {
             elapsedTimeLabel.text = "00.0"
             stopwatch.stop()
+            testSound.stop()
         }
     }
 }
