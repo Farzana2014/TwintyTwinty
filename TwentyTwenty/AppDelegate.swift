@@ -8,18 +8,20 @@
 
 import UIKit
 
+protocol AllowNotificationDelegate: class {
+
+    func notificationAllowed(isAllowed: Bool)
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    weak var delegate: AllowNotificationDelegate?
 
     var window: UIWindow?
-
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         return true
     }
 
@@ -43,6 +45,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        
+        if notificationSettings.types.rawValue == 7 {
+            delegate?.notificationAllowed(true)
+        } else if (notificationSettings.types.rawValue == 0) {
+            delegate?.notificationAllowed(false)
+        }
     }
 }
 

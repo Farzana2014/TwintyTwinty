@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     
     let stopwatch = Stopwatch()
     let testSound = Sound(name: "alarm", type: "caf")
+    var flag = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,32 +37,39 @@ class ViewController: UIViewController {
     }
     
     @IBAction func setNotification(sender: UISwitch) {
-        print(sender.on)
-        NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "switchStatus")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        print("notification switch status \(notificationSwicth.on)")
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.delegate = self
         
         if (sender.on) {
+            
+            if (UIApplication.sharedApplication().currentUserNotificationSettings()!.hashValue == 0) {
+                UIApplication.sharedApplication().cancelAllLocalNotifications()
+                let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+                
+            } else {
+                timerAction()
+            }
+            
             print("Alarm On!")
-            timerAction()
+
         } else {
             print("Alarm Off!")
             UIApplication.sharedApplication().cancelAllLocalNotifications()
         }
+        
+        
     }
-    
     
     func timerAction() {
         
+        NSUserDefaults.standardUserDefaults().setObject(notificationSwicth.on, forKey: "switchStatus")
+        NSUserDefaults.standardUserDefaults().synchronize()
+
         UIApplication.sharedApplication().cancelAllLocalNotifications()
-        let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
-        
-        if settings!.types == .None {
-            notificationSwicth.on = false
-            let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications in Settings, or we haven't asked yet.", preferredStyle: .Alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(ac, animated: true, completion: nil)
-            return
-        }
         
         var notification = UILocalNotification()
         notification = setUpNotification(notification)
@@ -122,3 +130,35 @@ class ViewController: UIViewController {
     }
 }
 
+
+extension ViewController: AllowNotificationDelegate {
+    
+    func notificationAllowed(isAllowed: Bool) {
+        if (isAllowed) {
+            notificationSwicth.on = true
+            timerAction()
+        } else {
+            notificationSwicth.on = false
+            
+            if (UIApplication.sharedApplication().currentUserNotificationSettings()!.hashValue == 0 && notificationSwicth.on == false && flag == 1) {
+                let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+                if settings!.types == .None {
+                    let ac = UIAlertController(title: "Can't On Notification", message: "Please go to settings and Set Permission", preferredStyle: .Alert)
+                    ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: okAction))
+                    presentViewController(ac, animated: true, completion: nil)
+                    return
+                }
+            }
+            
+            flag = 1
+        }
+    }
+   
+    
+    func okAction(alert: UIAlertAction!) {
+        dispatch_async(dispatch_get_main_queue()) {
+           UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+        }
+    }
+    
+}
