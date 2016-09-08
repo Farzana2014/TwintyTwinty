@@ -22,6 +22,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        //UIApplication.sharedApplication().cancelAllLocalNotifications()
+    
         guard let status = NSUserDefaults.standardUserDefaults().objectForKey("switchStatus") as? Bool else {
             notificationSwicth.on = false
             return
@@ -46,7 +48,7 @@ class ViewController: UIViewController {
         if (sender.on) {
             
             if (UIApplication.sharedApplication().currentUserNotificationSettings()!.hashValue == 0) {
-                UIApplication.sharedApplication().cancelAllLocalNotifications()
+                //UIApplication.sharedApplication().cancelAllLocalNotifications()
                 let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
                 UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
                 
@@ -71,10 +73,11 @@ class ViewController: UIViewController {
 
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         
-        var notification = UILocalNotification()
-        notification = setUpNotification(notification)
-        notification.fireDate = NSDate.init(timeIntervalSinceNow: Double(5))
-        notification = publishLocalNotification(notification)
+//        var notification = UILocalNotification()
+//        notification = setUpNotification(notification)
+//        notification.fireDate = NSDate.init(timeIntervalSinceNow: Double(5))
+//        notification = publishLocalNotification(notification)
+        
         
         for i in 1..<4 {
             var notificationR = UILocalNotification()
@@ -120,7 +123,7 @@ class ViewController: UIViewController {
     @IBAction func count20sec(sender: UISwitch) {
         
         if (sender.on) {
-            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector:("updateElapsedTimeLabel:"), userInfo: nil, repeats: true)
+            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector:(#selector(ViewController.updateElapsedTimeLabel(_:))), userInfo: nil, repeats: true)
             stopwatch.start()
         } else {
             elapsedTimeLabel.text = "00.0"
